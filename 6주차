@@ -1,0 +1,72 @@
+#include <stdio.h>
+
+void exerc(){
+    int year;
+    int month;
+    int days;
+
+    printf("연도 입력: ");
+    scanf("%d", &year);
+
+    printf("월 입력(1~12월): ");
+    scanf("%d", &month);
+
+    if (month >= 1 && month <= 12){
+        switch (month)
+        {
+        case 2:
+            if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
+                days = 29;
+            else
+                days = 28;
+            break;
+
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+            days = 30;
+            break;
+
+        default:
+            days = 31;
+            break;
+        }
+        printf("%d년 %d월은 %d일까지 있다.\n", year, month, days);
+    } else {
+        printf("1부터 12사이의 값을 입력.\n");
+    }
+}
+
+int main(){
+    exerc();
+    return 0;
+}
+----------------------------------------------------------------------------------------
+#include <stdio.h>
+
+int main(void){
+    int grade;
+    printf("학년을 입력");
+    scanf("%d", &grade);
+
+    switch (grade)
+    {
+    case 1:
+        printf("1학년");
+        break;
+    case 2:
+        printf("2학년");
+        break;
+    case 3:
+        printf("3학년");
+        break;
+    case 4:
+        printf("4학년");
+        break;
+        
+    default:
+        printf("잘못된 값을 입력하셨습니다.");
+        break;
+    }
+}
