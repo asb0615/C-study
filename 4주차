@@ -99,11 +99,11 @@ void exerc5(void) {
 
 int main(void)
 {
-	// exerc1();
-	// exerc2();
-	// exerc3();
-	// exerc4();
-	// exerc5();
+	 exerc1();
+	 exerc2();
+	 exerc3();
+	 exerc4();
+	 exerc5();
 }
 ---------------------------------------------------------------------------------------------
 int main(void){
