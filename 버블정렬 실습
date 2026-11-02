@@ -1,50 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
-#define SIZE 10 
-
-void bubble_sort(int arr[], int n)
+#define SIZE 10
+int main()
 {
-    int i, j, temp;
-    for (i = 0; i < n - 1; i++) {
-        for (j = 0; j < n - 1 - i; j++) {
-            if (arr[j] > arr[j + 1]) {
-                temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-            }
-        }
-    }
-}
-
-int main(void)
-{
-    int scores[SIZE];
-    int i, sum = 0;
-
-    srand((unsigned int)time(NULL));
-
-    for (i = 0; i < SIZE; i++)
-        scores[i] = rand() % 101;
-
-    printf("[정렬 전] ");
-    for (i = 0; i < SIZE; i++)
-        printf("%d ", scores[i]);
-    printf("\n");
-
-    bubble_sort(scores, SIZE);
-
-    printf("[정렬 후] ");
-    for (i = 0; i < SIZE; i++) {
-        printf("%d ", scores[i]);
-        sum += scores[i];
-    }
-    printf("\n\n");
-
-    printf("최댓값: %d\n", scores[SIZE - 1]);
-    printf("최솟값: %d\n", scores[0]);
-    printf("평  균: %.2f\n", (double)sum / SIZE);
-
+    int a[SIZE], sum=0, t;
+    srand(time(NULL));
+    for(int i=0;i<SIZE;i++) a[i]=rand()%101;
+    for(int i=0;i<SIZE-1;i++)
+        for(int j=0;j<SIZE-1-i;j++)
+            if(a[j]>a[j+1]){ t=a[j]; a[j]=a[j+1]; a[j+1]=t; }
+    for(int i=0;i<SIZE;i++){ printf("%3d ",a[i]); sum+=a[i]; }
+    printf("\n최댓값: %d\n최솟값: %d\n평균: %.2f\n",a[SIZE-1],a[0],(double)sum/SIZE);
     return 0;
 }
