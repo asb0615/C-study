@@ -1,0 +1,77 @@
+프로그래밍 실습 레포트
+배열로 학생 점수 관리하기 (버블 정렬)
+1. 실습 목적
+
+0~100점 사이의 난수로 학생 점수를 배열에 저장하고, 버블 정렬로 정렬한 뒤 최댓값, 최솟값, 평균을 구한다.
+
+2. 실습 내용
+학생 수는 기본 10명이며, #define SIZE로 변경할 수 있다.
+rand() % 101로 0~100점의 점수를 생성해 배열에 저장한다.
+버블 정렬은 이웃한 두 값을 비교해 순서가 틀리면 교환하는 과정을 반복한다. 한 바퀴를 돌 때마다 가장 큰 값이 뒤로 이동한다.
+정렬 후 첫 번째 값은 최솟값, 마지막 값은 최댓값이 되며, 평균은 총합을 학생 수로 나눠 구한다.
+3. 소스 코드 
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define SIZE 10
+
+void bubble_sort(int arr[], int n)
+{
+    int i, j, temp;
+    for (i = 0; i < n - 1; i++) {
+        for (j = 0; j < n - 1 - i; j++) {
+            if (arr[j] > arr[j + 1]) {
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main(void)
+{
+    int scores[SIZE];
+    int i, sum = 0;
+
+    srand((unsigned int)time(NULL));
+
+    for (i = 0; i < SIZE; i++)
+        scores[i] = rand() % 101;
+
+    printf("[정렬 전] ");
+    for (i = 0; i < SIZE; i++)
+        printf("%d ", scores[i]);
+    printf("\n");
+
+    bubble_sort(scores, SIZE);
+
+    printf("[정렬 후] ");
+    for (i = 0; i < SIZE; i++) {
+        printf("%d ", scores[i]);
+        sum += scores[i];
+    }
+    printf("\n\n");
+
+    printf("최댓값: %d\n", scores[SIZE - 1]);
+    printf("최솟값: %d\n", scores[0]);
+    printf("평  균: %.2f\n", (double)sum / SIZE);
+
+    return 0;
+}
+
+4. 실행 결과
+예시)
+[정렬 전] 87 41 1 31 6 52 2 82 62 3
+[정렬 후] 1 2 3 6 31 41 52 62 82 87
+
+최댓값: 87
+최솟값: 1
+평  균: 36.70
+
+난수를 사용하므로 실행할 때마다 결과는 달라진다.
+
+5. 느낀 점
+
+버블 정렬은 구현이 단순해 정렬 원리를 이해하기 좋았다. 다만 비교 횟수가 많아 시간 복잡도가 O(n²)이므로, 학생 수가 많아지면 비효율적이라는 점도 알 수 있었다.
